@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import express from 'express'
 import { Server } from "socket.io"
 import path from 'path'
@@ -17,6 +18,14 @@ const expressServer = app.listen(PORT, () => {
 })
 
 const io = new Server(expressServer, {
+=======
+import { createServer } from "http"
+import { Server } from "socket.io"
+
+const httpServer = createServer()
+
+const io = new Server(httpServer, {
+>>>>>>> 300c3322eed910b9458c8f6b0996802ef192a4ac
     cors: {
         origin: process.env.NODE_ENV === "production" ? false : ["http://localhost:5500", "http://127.0.0.1:5500"]
     }
@@ -29,4 +38,10 @@ io.on('connection', socket => {
         console.log(data)
         io.emit('message', `${socket.id.substring(0, 5)}: ${data}`)
     })
+<<<<<<< HEAD
 })
+=======
+})
+
+httpServer.listen(3500, () => console.log('listening on port 3500'))
+>>>>>>> 300c3322eed910b9458c8f6b0996802ef192a4ac
